@@ -15,21 +15,21 @@ const useStore = create(
         addNewBlock: (newBlock) =>
           set((state) => {
             state.kanbanData.blocks[newBlock.id] = newBlock;
-            state.kanbanData.columns[Object.keys(state.kanbanData.columns)[0]].blockIds.push(
-              newBlock.id
-            );
+            state.kanbanData.columns[
+              Object.keys(state.kanbanData.columns)[0]
+            ].blockIds.push(newBlock.id);
           }),
         deleteBlock: (blockId, columnId) =>
           set((state) => {
-            console.log("deleteBlock", blockId, columnId);
             delete state.kanbanData.blocks[blockId];
-            state.kanbanData.columns[columnId].blockIds = state.kanbanData.columns[
-              columnId
-            ].blockIds.filter((id) => id !== blockId);
+            state.kanbanData.columns[columnId].blockIds =
+              state.kanbanData.columns[columnId].blockIds.filter(
+                (id) => id !== blockId,
+              );
           }),
       },
-    }))
-  )
+    })),
+  ),
 );
 
 export default useStore;
